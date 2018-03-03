@@ -1,0 +1,22 @@
+h1 {
+
+}
+#form1 > input {
+
+}
+.btn {
+
+}
+
+.btn.btn-primary {
+  font-size: 29px;
+}
+
+img{
+  width:150px;
+  float:right;
+
+  position:relative;
+  top:-50px;
+
+}
