@@ -133,7 +133,7 @@ function getMyData(form) {
       return {memberId: range[i][0], point: range[i][2], totalPoint: range[i][3], row: row};
     }
   }
-  return {mailAddress: "", point: 0, totalPoint: 0, row: 0};
+  return {memberId: "", point: 0, totalPoint: 0, row: 0};
   
 }
 
@@ -142,7 +142,6 @@ function getMyData(form) {
  * 投票を行う
  */
 function doPost(form) {
-  Logger.log(getMyNickName());
   // 投票を受取り、所持ポイントを超過していないかをチェック
   // 投票元と投票先が同じでないことを確認
   // 問題なければ所持ポイントを減算
@@ -179,7 +178,7 @@ function isAvailablePayment(myData, form) {
   }
   
   var resultSheet = getResultSheet();
-  var masters = resultSheet.getRange(2, 1, resultSeet.getLastRow() - 1, 2).getValues();
+  var masters = resultSheet.getRange(2, 1, resultSheet.getLastRow() - 1, 2).getValues();
   var masterName;
   for (var i = 0; i < masters.length; i++) {
     if (masters[i][0] == form.memberId && masters[i][1] == form.name) {
