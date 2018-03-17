@@ -283,13 +283,10 @@ function monthlyCalc() {
     var totalPoint = 0;
     var tmpName = resultRange[i][1];
     for (var j = 0; j < logRange.length; j++) {
-      Logger.log(logRange[j][0]);
-      Logger.log(tmpName);
       if (logRange[j][0] == tmpName) {
         totalPoint += logRange[j][1];
       }
     }
-    Logger.log(totalPoint);
     resultSheet.getRange(i + 2, 4, 1, 1).setValues([[totalPoint]]);
   }
   // 2. 全ての使用可能ポイントをリセットする
