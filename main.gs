@@ -149,8 +149,11 @@ function doPost(form) {
   // 登録を行う
   var sheet = getLogSheet();
   var myData = getMyData(form);
+  if (myData.point < form.point) {
+    return {result: "ERROR", message: "ポイントが不足しています。"};
+  }
   if (!isAvailablePayment(myData, form)) {
-    return {result: "ERROR"};
+    return {result: "ERROR", message: "自分には投票できません。"};
   }
   var masterSheet = getResultSheet();
   masterSheet.getRange(myData.row, 3, 1, 1).setValues([[myData.point - form.point]]);
@@ -173,10 +176,6 @@ function doPost(form) {
  * 2. 自分への投票でないこと
  */
 function isAvailablePayment(myData, form) {
-  if (myData.point < form.point) {
-    return false;
-  }
-  
   var resultSheet = getResultSheet();
   var masters = resultSheet.getRange(2, 1, resultSheet.getLastRow() - 1, 2).getValues();
   var masterName;
@@ -199,7 +198,7 @@ function isAvailablePayment(myData, form) {
  */
 function isValidName(name) {
   var masterSheet = getResultSheet();
-  var names = masterSheet.getRange(2, 1, masterSheet.getLastRow() - 1, 1).getValues();
+  var names = masterSheet.getRange(2, 2, masterSheet.getLastRow() - 1, 1).getValues();
   for (var i = 0; i < names.length; i++) {
     if (names[i][0] == name) {
       return true;
@@ -283,13 +282,10 @@ function monthlyCalc() {
     var totalPoint = 0;
     var tmpName = resultRange[i][1];
     for (var j = 0; j < logRange.length; j++) {
-      Logger.log(logRange[j][0]);
-      Logger.log(tmpName);
       if (logRange[j][0] == tmpName) {
         totalPoint += logRange[j][1];
       }
     }
-    Logger.log(totalPoint);
     resultSheet.getRange(i + 2, 4, 1, 1).setValues([[totalPoint]]);
   }
   // 2. 全ての使用可能ポイントをリセットする
