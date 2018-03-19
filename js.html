@@ -6,12 +6,12 @@
 <script>
   $(function(){
     $("#giving").on('click',function(e){
-      google.script.run.withSuccessHandler(update).withFailureHandler(update).doPost(this.parentNode);
+      google.script.run.withSuccessHandler(update).withFailureHandler(error).doPost(this.parentNode);
     });
   });
   var error = function () {
     // 表示ダイアログの表示
-    $('#exampleModal2').modal();
+    alert('データの送信に失敗しました。。\nインターネットの接続がいい場所で、もう一度お試しください！');
   }
   var update = function () {
     // 表示ダイアログの表示
