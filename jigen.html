@@ -11,66 +11,48 @@
 
     <div class="container">
       <header class="row">
-        <div class="col-8">
+        <div class="col-6">
           <h1>Thanks giving</h1>
         </div>
-        <div class="col-4">
-          あなたの累計ポイントは<?= getTotalPoint(memberId); ?>です♪
+        <div class="col-6 text-right">
+          <?=getMyNickName()?>さん、こんにちは♪<br>これまでに獲得したポイントは<?=getTotalPoint(getMemberId())?>Pです♪
         </div>
       </header>
     </div>
     <div class="container">
       <form action="" method=post id="form1">
-        <strong> あだな：</strong>
-        <input type="text" name="name" size="30" maxlength="20">さんに
-        <br>
-        <input type="text" name="point" size="30" maxlength="20">ポイントの
-        <br>
+        <p>
+          <input type="text" name="name" size="30" maxlength="20" placeholder="キンクリ">さんに
+        </p>
+        <p>
+          <input type="text" name="point" size="30" maxlength="20" placeholder="100">ポイントの
+        </p>
+        <input type="hidden" name="memberId" value="<?=getMemberId()?>">
         <!-- Button trigger modal -->
         <button id="giving" type="button" class="btn btn-primary">
           ありがとう♪
         </button>
-        <img src="gatag-00006231.jpg" alt="">
+      </form>
+      <img src="http://www.fs-cosmos.com/_p/1990/images/pc/44d994cc.png" alt="">
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">
-                  送信しました（*^_^*）
-                </h5>
-                <button type="button" name="btn" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                ...
-              </div>
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                送信しました（*^_^*）
+              </h5>
+              <button type="button" name="btn" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
             </div>
           </div>
         </div>
-      </form>
-    </div>
+      </div>
 
-        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">
-                  送信しました??（*^_^*）
-                </h5>
-                <button type="submit" name="btn" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                ...
-              </div>
-            </div>
-          </div>
-        </div>
-        <input type="hidden" id="memberId" value="<?= memberId ?>">
-      </form>
     </div>
     <?!= HtmlService.createHtmlOutputFromFile("js").getContent(); ?>
   </body>
